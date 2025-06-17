@@ -38,6 +38,7 @@
 <div class="view-toggle-buttons" style="text-align: center; margin-top: 1rem;">
   <button type="button" class="nav-btn"  onclick="mostraLibreria()">La mia Libreria</button>
   <button type="button" class="nav-btn"  onclick="mostraSezione('amici')">Bookathloners</button>
+  <a href="/challenge" class="nav-btn">Challenge</a>
 </div>
 
 <div class="user-greeting-box">
@@ -124,10 +125,10 @@
 </section>
 
 <!-- === AMICI === -->
-<section id="sezione-amici" class="d-none">
+<section id="sezione-amici" class="d-none" th:if="${amici.size() > 0}">
   <h2>I miei Bookathloners</h2>
   <div class="card-section-wrapper">
-    <div class="card-container" th:if="${amici.size() > 0}">
+    <div class="card-container">
       <div class="card" th:each="a : ${amici}">
         <img src="/images/avatar.png" alt="Avatar" class="card-img shadowed-avatar">
         <div class="card-content">
@@ -144,10 +145,10 @@
   </div>
 </section>
 
-<section id="sezione-amici" class="d-none">
+<section id="sezione-amici" class="d-none" th:if="${richiesteRicevute.size() > 0}">
   <h2>Richieste Ricevute</h2>
   <div class="card-section-wrapper">
-    <div class="card-container" th:if="${richiesteRicevute.size() > 0}">
+    <div class="card-container">
       <div class="card" th:each="r : ${richiesteRicevute}">
         <img src="/images/avatar.png" alt="Avatar" class="card-img shadowed-avatar">
         <div class="card-content">
@@ -168,10 +169,10 @@
   </div>
 </section>
 
-<section id="sezione-amici" class="d-none">
+<section id="sezione-amici" class="d-none" th:if="${richiesteInviate.size() > 0}">
   <h2>Richieste Inviate</h2>
   <div class="card-section-wrapper">
-    <div class="card-container" th:if="${richiesteInviate.size() > 0}">
+    <div class="card-container">
       <div class="card" th:each="s : ${richiesteInviate}">
         <img src="/images/avatar.png" alt="Avatar" class="card-img shadowed-avatar">
         <div class="card-content">

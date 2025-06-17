@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookathlon - Challenge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <div class="logo">
+      <a th:href="@{/}">
+        <img th:src="@{/images/logoverde.png}" alt="Bookathlon Logo" />
+      </a>
+    </div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav class="nav-buttons">
+      <div th:if="${#authorization.expression('isAuthenticated()')}">
+        <a href="/" class="btn">Home</a>
+        <a href="/area-personale/cerca" class="btn">Cerca Bookathloner</a>
+        <a href="/area-personale" class="btn">Area Personale</a>
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+          <button type="submit" class="btn">Esci</button>
+        </form>
+      </div>
+      <div th:if="${#authorization.expression('isAnonymous()')}">
+        <a href="/login" class="btn">Accedi</a>
+        <a href="/register" class="btn">Registrati</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="user-greeting-box">
+  <h1 class="user-welcome">Benvenuto nella pagina Challenge!</h1>
+</div>
+
+<main>
+  <section>
+    <h2>Classifica Globale</h2>
+    <div class="card-section-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Posizione</th>
+            <th>Utente</th>
+            <th>Punteggio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="utente, iterStat : ${classificaGlobale}">
+            <td th:text="${iterStat.index + 1}">1</td>
+            <td th:text="${utente.username}">username</td>
+            <td th:text="${utente.score}">0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Classifica Amici</h2>
+    <div class="card-section-wrapper">
+      <table th:if="${classificaAmici.size() > 0}">
+        <thead>
+          <tr>
+            <th>Posizione</th>
+            <th>Utente</th>
+            <th>Punteggio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="amico, iterStat : ${classificaAmici}">
+            <td th:text="${iterStat.index + 1}">1</td>
+            <td th:text="${amico.username}">username</td>
+            <td th:text="${amico.score}">0</td>
+          </tr>
+        </tbody>
+      </table>
+      <p th:if="${classificaAmici.size() == 0}">Non hai ancora amici registrati.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Bookathlon</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.querySelector('.nav-buttons').classList.toggle('show');
+  }
+</script>
+</body>
+</html>
