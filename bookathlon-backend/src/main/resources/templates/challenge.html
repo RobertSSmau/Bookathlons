@@ -41,7 +41,7 @@
   <section>
     <h2>Classifica Globale</h2>
     <div class="card-section-wrapper">
-      <table>
+      <table class="tabella-challenge">
         <thead>
           <tr>
             <th>Posizione</th>
@@ -52,8 +52,8 @@
         <tbody>
           <tr th:each="utente, iterStat : ${classificaGlobale}">
             <td th:text="${iterStat.index + 1}">1</td>
-            <td th:text="${utente.username}">username</td>
-            <td th:text="${utente.score}">0</td>
+            <td><span class="pill" th:text="${utente.username}">username</span></td>
+            <td><span class="pill punteggio" th:text="${utente.score}">0</span></td>
           </tr>
         </tbody>
       </table>
@@ -63,7 +63,7 @@
   <section>
     <h2>Classifica Amici</h2>
     <div class="card-section-wrapper">
-      <table th:if="${classificaAmici.size() > 0}">
+      <table class="tabella-challenge" th:if="${classificaAmici.size() > 0}">
         <thead>
           <tr>
             <th>Posizione</th>
@@ -74,8 +74,8 @@
         <tbody>
           <tr th:each="amico, iterStat : ${classificaAmici}">
             <td th:text="${iterStat.index + 1}">1</td>
-            <td th:text="${amico.username}">username</td>
-            <td th:text="${amico.score}">0</td>
+            <td><span class="pill" th:text="${amico.username}">username</span></td>
+            <td><span class="pill punteggio" th:text="${amico.score}">0</span></td>
           </tr>
         </tbody>
       </table>

@@ -442,3 +442,32 @@ footer {
 .d-none {
   display: none !important;
 }
+
+.tabella-challenge {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.tabella-challenge th,
+.tabella-challenge td {
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.pill {
+  display: inline-block;
+  padding: 0.4rem 1.2rem;
+  border-radius: 999px;
+  border: 2px solid #28a745;
+  color: #28a745;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.punteggio {
+  background-color: #28a745;
+  color: white;
+}
