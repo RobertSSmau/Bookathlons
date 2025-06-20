@@ -33,35 +33,37 @@
 </header>
 
 <main>
-  <section>
+  <section class="search-section">
     <h2>Cerca un amico</h2>
     <form method="get" th:action="@{/area-personale/cerca-utente}">
-      <input type="text" name="q" placeholder="Inserisci uno username" required />
-      <button type="submit">Cerca</button>
+      <input class="search-input" type="text" name="q" placeholder="Inserisci uno username" required />
+      <button class="search-btn" type="submit">Cerca</button>
     </form>
   </section>
 
   <section th:if="${risultatiUtenti != null}">
-    <h3 th:text="'Risultati per: ' + ${query}"></h3>
+    <h3 class="centered-text" th:text="'Risultati per: ' + ${query}"></h3>
 
     <p th:if="${risultatiUtenti.size() == 0}">Nessun utente trovato.</p>
 
-    <ul th:if="${risultatiUtenti.size() > 0}">
-      <li th:each="utente : ${risultatiUtenti}">
-        <span th:text="${utente.username}">Username</span>
-        <form method="post" th:action="@{/area-personale/amici/invia}" style="display:inline;">
+    <div class="card-container" th:if="${risultatiUtenti.size() > 0}">
+      <div class="card" th:each="utente : ${risultatiUtenti}">
+        <h3 th:text="${utente.username}">Username</h3>
+        <form method="post" th:action="@{/area-personale/amici/invia}">
           <input type="hidden" name="destinatarioId" th:value="${utente.id}" />
           <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
           <button type="submit">Invia richiesta</button>
         </form>
-      </li>
-    </ul>
+      </div>
+    </div>
   </section>
 </main>
+
 <script>
   function toggleMenu() {
     document.querySelector('.nav-buttons').classList.toggle('show');
   }
 </script>
+
 </body>
 </html>

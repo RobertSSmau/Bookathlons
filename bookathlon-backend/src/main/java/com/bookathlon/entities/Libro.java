@@ -26,6 +26,7 @@ public class Libro {
 	private String genere;
 	private LocalDate data_pubblicazione;
 	private String url_copertina;
+	private String descrizione;
 
 	public Long getId() {
 		return id;
@@ -68,6 +69,12 @@ public class Libro {
 	}
 	public void setUrl_copertina(String url_copertina) {
 		this.url_copertina = url_copertina;
+	}
+	public String getDescrizione() {
+		return descrizione;
+	}
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
 	}
 	
 	
